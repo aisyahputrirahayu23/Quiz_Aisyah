@@ -11,7 +11,7 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        $data['dataMahasiswa'] = mhs::all();
+        $data['dataMahasiswa'] = mahasiswa::all();
         return view('admin.mahasiswa.index', $data);
     }
 
@@ -44,7 +44,7 @@ class MahasiswaController extends Controller
         ]);
 
         // Simpan data jika validasi lolos
-        mhs::create($validated);
+        mahasiswa::create($validated);
 
         return redirect()->route('mahasiswa.index')
             ->with('success', 'Penambahan Data Berhasil!');
@@ -63,7 +63,7 @@ class MahasiswaController extends Controller
      */
     public function edit(string $id)
     {
-        $data['dataMahasiswa'] = mhs::findOrFail($id);
+        $data['dataMahasiswa'] = mahasiswa::findOrFail($id);
         return view('admin.pelanggan.edit', $data);
     }
 
@@ -88,7 +88,7 @@ class MahasiswaController extends Controller
         ]);
 
         // Ambil data pelanggan berdasarkan ID
-        $mahasiswa = mhs::findOrFail($id);
+        $mahasiswa = mahasiswa::findOrFail($id);
 
         // Update data menggunakan hasil validasi
         $mahasiswa->update($validated);
@@ -103,7 +103,7 @@ class MahasiswaController extends Controller
      */
     public function destroy(string $id)
     {
-        $mahasiswa = mhs::findOrFail($id);
+        $mahasiswa = mahasiswa::findOrFail($id);
 
         $mhasiswa->delete();
         return redirect()->route('mahasiswa.index')->with('success', 'Data Berhasil Dihapus');
